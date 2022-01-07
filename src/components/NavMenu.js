@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Divider } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const NavMenu = () => {
   const navigate = useNavigate();
@@ -31,7 +32,15 @@ const NavMenu = () => {
           textTransform: "none",
         }}
       >
-        <b>KindNUS</b>
+        <b
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          KindNUS
+          <KeyboardArrowDownIcon />
+        </b>
       </Button>
       <Menu
         id="basic-menu"
