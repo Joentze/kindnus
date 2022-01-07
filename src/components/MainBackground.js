@@ -1,6 +1,4 @@
-const MainBackground =()=>{
-    return(
-        <div class={"mainBackground"}></div>
-    )
-}
-export default MainBackground
+const MainBackground = () => {
+  return <div className={"mainBackground"}></div>;
+};
+export default MainBackground;

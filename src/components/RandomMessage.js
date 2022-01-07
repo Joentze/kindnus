@@ -1,45 +1,46 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+
 import { useState, useEffect } from "react";
 import db from "../config";
 
-const Message = () => {
+const RandomMessage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedMessages, setLoadedMessages] = useState([]);
+  const [randomMessage, setRandomMessage] = useState([]);
 
   const fetchMessages = async () => {
     setIsLoading(true);
-    const response = db.collection("messages");
-    const data = await response.get();
+    const messagesRef = db.collection("messages");
+    const queryRef = messagesRef.where("emotion", "==", props.emotion);
+    const data = await queryRef.get();
 
     const messages = [];
     data.docs.forEach((message) => {
       messages.push(message.data());
     });
-    setLoadedMessages(messages);
+
+    setRandomMessage(messages[Math.floor(Math.random() * messages.length)]);
     setIsLoading(false);
   };
+
   useEffect(async () => {
     await fetchMessages();
   }, []);
   if (isLoading) {
     return (
       <section>
-        <h1>All Messages</h1>
-        <p>Loading...</p>
+        <p>Loading message...</p>
       </section>
     );
   }
+
   return (
     <section>
-      <h1>All Messages</h1>
+      <h1>Random Messages</h1>
       <p>Done</p>
-      <ul>
-        {loadedMessages.map((loadedMessage) => (
-          <li key={loadedMessage.message}>{loadedMessage.message}</li>
-        ))}
-      </ul>
+      <blockquote>{randomMessage.message}</blockquote>
     </section>
   );
 };
 
-export default Message;
+export default RandomMessage;
