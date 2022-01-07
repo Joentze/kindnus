@@ -27,6 +27,16 @@
   margin-left:auto;
   margin-right: auto;
 }
+.SMContainer{
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  font-size: x-large;
+  width:60vw;
+  height:max-content;
+  margin-top:200px;
+}
+
 .headerTitlePage h1{
   text-align: center;
   font-family: 'Open Sans';
@@ -73,6 +83,8 @@
 .App-link {
   color: #61dafb;
 }
+
+
 
 @keyframes App-logo-spin {
   from {
