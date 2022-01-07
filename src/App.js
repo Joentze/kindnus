@@ -1,6 +1,6 @@
 import './App.css';
 import SendMessage from './pages/SendMessage';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {Router, Routes, Route} from 'react-router'
 function App() {
   return (
     <Router>

@@ -1,6 +1,6 @@
 import db from "../config";
 import { useState } from "react";
-
+import { Tooltip, Button } from "@mui/material";
 const InputForm =()=>{
     const [emo, setEmo] = useState(null);
     const [emoSelected, setEmoSelcted] = useState(false);
@@ -24,9 +24,24 @@ const InputForm =()=>{
     }
     return(
         <>
-        <textarea id={"textAreaInput"}>
-
-        </textarea>
+        <div>
+        </div>
+        <div>
+            <textarea id={"textAreaInput"}></textarea>
+        </div>
+        <div>
+            <Button 
+            variant="contained"
+            size="large"
+            style={{
+                background:"#5959FF",
+                fontStyle:"Bold"
+            }}
+            onClick={()=>{
+                writeMessageToFB()
+            }}
+            ></Button>
+        </div>
         </>
     )
 }
