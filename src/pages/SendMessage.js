@@ -1,8 +1,13 @@
 import InputForm from "../components/MessageTextBox"
+import MainBackground from '../components/MainBackground'
 const SendMessage =()=>{
     return (
         <>
-            <h1>Hello World</h1>
+            <MainBackground/>
+            <div className={"headerTitlePage"}>
+                <h1>Send a Message</h1>
+                <p>to Someone Feeling...</p>
+            </div>
             <InputForm/>
         </>
     )

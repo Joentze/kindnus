@@ -4,10 +4,16 @@ import { Tooltip, IconButton, Button } from "@mui/material";
 import { allEmotions, emotionsNumMap, emotionsMap } from "./misc/content";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CircularProgress from '@mui/material/CircularProgress';
+import JSConfetti from 'js-confetti'
+
+
+
+
 const InputForm =()=>{
     const [emo, setEmo] = useState(null);
     const [emoSelected, setEmoSelected] = useState(false);
     const [messageStatus, setMessageStatus] = useState(false);
+    const confetti = new JSConfetti()
     const writeMessageToFB =()=>{
         if(!messageStatus && emoSelected){
             let writeObj ={
@@ -38,11 +44,15 @@ const InputForm =()=>{
             </div>
         ):
         (
-        <div>
-        <div>
+        <div className={"SMContainer"}>
+        <div className={"centerContent"}>
             {
                 emo?(
-                    <div>
+                    <div style={{
+                        display:"flex",
+                        flexDirection:"row",
+                        marginLeft:"0px"
+                    }}>
                         <div>
                             <IconButton
                             onClick={()=>{
@@ -50,17 +60,21 @@ const InputForm =()=>{
                                 setEmoSelected(false)
                             }}
                             >
-                                <ArrowBackIosIcon></ArrowBackIosIcon>
+                                <ArrowBackIosIcon
+                                style={{color:"#7867c5"}}
+                                ></ArrowBackIosIcon>
                             </IconButton>
                         </div>
                         <div>
-                            <h2>{emo} {emotionsMap[emo]}</h2>
+                            <h2
+                            style={{marginTop:"5px", color:"#7867c5", fontFamily:"Nunito"}}
+                            >{emo} {emotionsMap[emo]}</h2>
                         </div>
                     </div>
                 ):(<div>
                     {allEmotions.map((item, key)=>{
                         return (
-                            <Tooltip title={item} key={key}>
+                            <Tooltip title={item} key={key} placement="top">
                                 <IconButton
                                 component="span"
                                 color="primary"
@@ -71,6 +85,9 @@ const InputForm =()=>{
                                 onClick={()=>{
                                     setEmo(item)
                                     setEmoSelected(true)
+                                    confetti.addConfetti({
+                                        emojis:[emotionsMap[item]]
+                                    })
                                 }}
                                 >
                                     {emotionsMap[item]}
@@ -82,13 +99,14 @@ const InputForm =()=>{
                 )
             }
         </div>
-        <div>
+        <div className={"centerContent"}>
             <textarea id={"textAreaInput"}></textarea>
         </div>
-        <div>
+        <div className={"centerContent"}>
             <Button 
             variant="contained"
             size="large"
+            className={"centerContent"}
             style={{
                 background:"#5959FF",
                 fontStyle:"Bold"
