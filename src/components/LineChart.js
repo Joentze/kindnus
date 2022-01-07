@@ -1,7 +1,12 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import "chart.js/auto";
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
 import DashboardCard from "./DashboardCard";
+import db from "../config";
+import { useEffect, useState } from "react";
+import { Emotions } from "./misc/content";
 
 /**
  * Generates an array of data objects for line chart
@@ -39,7 +44,81 @@ const sampleData = (emotion) => {
   return data;
 };
 
-const data = {
+const parseEmotions = (emotions) => {
+  // for (const [emotion, num] of Object.entries(Emotions)) {
+  //   let data = []
+  // }
+  const getKey = (obj, val) => Object.keys(obj).find((key) => obj[key] === val);
+
+  let datasets = [
+    {
+      label: "Happiness",
+      data: [],
+      fill: false,
+      borderColor: "#eab308",
+      tension: 0.1,
+    },
+    {
+      label: "Sadness",
+      data: [],
+      fill: false,
+      borderColor: "#3b82f6",
+      tension: 0.1,
+    },
+    {
+      label: "Anger",
+      data: [],
+      fill: false,
+      borderColor: "#ef4444",
+      tension: 0.1,
+    },
+    {
+      label: "Love",
+      data: [],
+      fill: false,
+      borderColor: "#ec4899",
+      tension: 0.1,
+    },
+  ];
+
+  const end = new Date();
+
+  const start = new Date();
+  start.setHours(start.getHours() - 48);
+
+  let totalCounts = {};
+
+  for (let emotion of emotions) {
+    const emotionName = getKey(Emotions, emotion.emotion);
+    emotion.hour = Math.floor(
+      (emotion.timestamp.toDate() - start) / (1000 * 60 * 60)
+    );
+
+    if (!totalCounts[emotionName]) {
+      totalCounts[emotionName] = { counts: [] };
+    }
+    if (!totalCounts[emotionName].counts[emotion.hour]) {
+      totalCounts[emotionName].counts[emotion.hour] = 1;
+    } else {
+      totalCounts[emotionName].counts[emotion.hour] += 1;
+    }
+  }
+  for (let dataset of datasets) {
+    let counts = totalCounts[dataset.label]?.counts;
+    let data = [];
+    if (counts) {
+      for (let [hour, count] of counts.entries()) {
+        const datetime = new Date();
+        datetime.setHours(start.getHours() + hour);
+        data.push({ x: datetime, y: count ? count : 0, d: datetime });
+      }
+    }
+    dataset.data = data;
+  }
+  return datasets;
+};
+
+const randomData = {
   datasets: [
     {
       label: "Happiness",
@@ -116,13 +195,38 @@ const options = {
 };
 
 const LineChart = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [emotionsData, setEmotionsData] = useState([]);
+
+  const getEmotions = async () => {
+    setIsLoading(true);
+    const emotionsRef = db.collection("emotions");
+    const queryRef = emotionsRef.orderBy("timestamp", "asc");
+    const data = await queryRef.get();
+
+    const emotions = [];
+    data.docs.forEach((emotion) => {
+      emotions.push(emotion.data());
+    });
+    const emotionsData = parseEmotions(emotions);
+    setEmotionsData(emotionsData);
+    console.log(emotionsData, randomData);
+    setIsLoading(false);
+  };
+
+  useEffect(async () => {
+    getEmotions();
+  }, []);
+
   return (
     <DashboardCard
       style={{
         marginBottom: "2rem",
       }}
     >
-      <Line data={data} options={options} />
+      {isLoading ? null : (
+        <Line data={{ datasets: emotionsData }} options={options} />
+      )}
     </DashboardCard>
   );
 };
