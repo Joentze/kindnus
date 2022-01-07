@@ -35,7 +35,7 @@ const InputForm =()=>{
         <>
         {
         messageStatus?(
-            <div>
+            <div className={"centerContent loadingBoxCircular"}>
                 <CircularProgress
                     style={{
                         color:"#5959ff"
@@ -67,7 +67,7 @@ const InputForm =()=>{
                         </div>
                         <div>
                             <h2
-                            style={{marginTop:"5px", color:"#7867c5", fontFamily:"Nunito"}}
+                            style={{marginTop:"5px", color:"#7867c5", fontSize:"20px",fontFamily:"Nunito"}}
                             >{emo} {emotionsMap[emo]}</h2>
                         </div>
                     </div>
@@ -100,9 +100,12 @@ const InputForm =()=>{
             }
         </div>
         <div className={"centerContent"}>
-            <textarea id={"textAreaInput"}></textarea>
+            <textarea 
+            id={"textAreaInput"}
+            className={"textAreaBox"}
+            ></textarea>
         </div>
-        <div className={"centerContent"}>
+        <div className={"centerContent sendButtonMsgPage"}>
             <Button 
             variant="contained"
             size="large"
