@@ -12,6 +12,9 @@ function App() {
         <Route exact path="/" element={<SendMessage />} />
         <Route exact path="/feelings" element={<Feelings />} />
         <Route exact path="/Happy" element={<MoodBoard mood={"Happy"} />} />
+        <Route exact path="/Sad" element={<MoodBoard mood={"Sad"} />} />
+        <Route exact path="/Angry" element={<MoodBoard mood={"Angry"} />} />
+        <Route exact path="/Loved" element={<MoodBoard mood={"Loved"} />} />
       </Routes>
     </Router>
   );
