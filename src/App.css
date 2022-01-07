@@ -12,51 +12,198 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.headerTitlePage{
-  position:relative;
-  width: max-content;
-  height:max-content;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:200px;
-}
-.centerContent{
+.centerContent {
   position: relative;
-  width:fit-content;
-  height:max-content;
-  margin-left:auto;
+  width: fit-content;
+  height: max-content;
+  margin-left: auto;
   margin-right: auto;
 }
-.headerTitlePage h1{
-  text-align: center;
-  font-family: 'Open Sans';
-  /*color:#5959ff;*/
-  font-size: 60px;
-  text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
-  background: -webkit-linear-gradient(180.16deg, #5959FF -83.07%, #ffab87 252.2%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+/* Title page */
+
+.sendMessageWrapper{
+  margin: 150px auto;
 }
 
-.headerTitlePage p{
-  margin-top:-40px;
-  text-align: center;
-  font-family: 'Nunito';
-  font-size: 25px;
-  text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
-  background: -webkit-linear-gradient(180.16deg, #5959FF -83.07%, #ffab87 252.2%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+.homeRandomMessage{
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(89,89,255, 0.2);
+  box-shadow: 0 0 10px lightgray;
+  margin: 10px;
+  width: 250px;
+
 }
 
-.mainBackground{
+
+.homeRandomMessages > *{
   position: absolute;
   z-index: -1;
-  top:0;
+}
+
+.randomMessagePositioner1{
+ top: 3%;
+ left: 18% ;
+}
+
+.randomMessagePositioner2{
+ top: 5%;
+ right: 10% ;
+}
+
+.randomMessagePositioner3{
+  bottom: 40%;
+ right: 10% ;
+}
+
+.randomMessagePositioner4{
+  bottom: 15%;
+ right: 40% ;
+}
+
+.randomMessagePositioner0{
+  bottom: 50%;
+ left: 3% ;
+}
+.homeRandomMessages{
+  text-align: center;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  animation: slide 15s linear infinite;
+
+}
+
+@media (min-width: 1280px) {
+  .sendMessageWrapper{
+    margin: 250px auto;
+  }
+
+  .homeRandomMessages > *{
+    z-index: -1;
+  }
+
+  .randomMessagePositioner1{
+    top: 6%;
+    left: 21% ;
+   }
+   
+   .randomMessagePositioner2{
+    top: 8%;
+    right: 20% ;
+   }
+   
+   .randomMessagePositioner3{
+     bottom: 46%;
+    right: 16% ;
+   }
+   
+   .randomMessagePositioner4{
+     bottom: 15%;
+    right: 40% ;
+   }
+   
+   .randomMessagePositioner0{
+     bottom: 50%;
+    left: 13% ;
+   }
+}
+
+@media (max-width: 991px) {
+  .sendMessageWrapper{
+    margin: 50px auto;
+  }
+
+  .homeRandomMessages > *{
+    position: static;
+    z-index: -1;
+  }
+}
+
+.headerTitlePage {
+  position: relative;
+  width: max-content;
+  height: max-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.headerTitlePage h1 {
+  margin: 0px;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 60px;
+  text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+  background: -webkit-linear-gradient(
+    180.16deg,
+    #5959ff -83.07%,
+    #ffab87 252.2%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.headerTitlePage p {
+  margin: 0px;
+  text-align: center;
+  font-family: "Nunito";
+  font-size: 25px;
+  text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+  background: -webkit-linear-gradient(
+    180.16deg,
+    #5959ff -83.07%,
+    #ffab87 252.2%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 991px){
+
+  .headerTitlePage h1{ 
+    font-size: 52px;
+    line-height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .headerTitlePage{
+    width: max-content;
+  }
+
+  .headerTitlePage h1{ 
+    font-size: 44px;
+    line-height: 52px;
+    margin-bottom: 5px;
+    
+  }
+
+
+}
+
+.mainBackground {
+  position: absolute;
+  z-index: -1;
+  top: 0;
   left: 0;
-  width:100%;
-  height:100%;
-  background: radial-gradient(116.63% 116.63% at 50% -11.5%, #FFFFFF 66.74%, #FFCFBA 84.9%, #9999FF 100%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    116.63% 116.63% at 50% -11.5%,
+    #ffffff 66.74%,
+    #ffcfba 84.9%,
+    #9999ff 100%
+  );
 }
 
 .App-header {
