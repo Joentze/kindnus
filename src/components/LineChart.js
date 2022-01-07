@@ -1,6 +1,7 @@
 import "chart.js/auto";
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
+import DashboardCard from "./DashboardCard";
 
 const sampleData = () => {
   const date = new Date();
@@ -17,9 +18,9 @@ const sampleData = () => {
     });
     dt = new Date(dt.setDate(dt.getDate() + 1));
   }
-  console.log(data);
   return data;
 };
+
 const data = {
   datasets: [
     {
@@ -52,22 +53,56 @@ const data = {
     },
   ],
 };
-const options = {
-  scales: {
-    y: {
-      beginAtZero: true,
+
+const scales = {
+  y: {
+    beginAtZero: true,
+    grid: {
+      display: false,
     },
-    x: {
-      type: "time",
+  },
+  x: {
+    type: "time",
+    grid: {
+      display: false,
+    },
+    ticks: {
+      maxRotation: 0,
+      autoSkip: true,
+      font: {
+        size: 9,
+      },
+    },
+  },
+};
+
+const options = {
+  scales,
+  plugins: {
+    tooltip: {
+      callbacks: {
+        title: ([chart]) => chart.dataset.data[chart.dataIndex].d,
+        label: (chart) =>
+          ({
+            0: "Happy",
+            1: "Sad",
+            2: "Angry",
+            3: "Love",
+          }[chart.dataset.data[chart.dataIndex].emotion]),
+      },
     },
   },
 };
 
 const LineChart = () => {
   return (
-    <div>
+    <DashboardCard
+      style={{
+        marginBottom: "2rem",
+      }}
+    >
       <Line data={data} options={options} />
-    </div>
+    </DashboardCard>
   );
 };
 

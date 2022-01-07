@@ -36,7 +36,7 @@ const RandomMessage = (props) => {
 
   return (
     <section>
-      <h1>Random Messages</h1>
+      <h3>Random Messages</h3>
       <p>Done</p>
       <blockquote>{randomMessage.message}</blockquote>
     </section>

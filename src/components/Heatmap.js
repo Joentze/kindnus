@@ -3,6 +3,7 @@ import { Chart as ChartJS } from "chart.js";
 import "chartjs-adapter-date-fns";
 import { Chart } from "react-chartjs-2";
 import { MatrixController, MatrixElement } from "chartjs-chart-matrix";
+import DashboardCard from "./DashboardCard";
 ChartJS.register(MatrixController, MatrixElement);
 
 const sampleData = () => {
@@ -22,7 +23,6 @@ const sampleData = () => {
     });
     dt = new Date(dt.setDate(dt.getDate() + 1));
   }
-  console.log(data);
   return data;
 };
 
@@ -124,25 +124,36 @@ const scales = {
 };
 
 const options = {
-  maintainAspectRatio: false,
   scales,
+  maintainAspectRatio: true,
+  aspectRatio: 6,
   plugins: {
     legend: false,
+    tooltip: {
+      callbacks: {
+        title: ([chart]) => chart.dataset.data[chart.dataIndex].d,
+        label: (chart) =>
+          ({
+            0: "Happy",
+            1: "Sad",
+            2: "Angry",
+            3: "Love",
+          }[chart.dataset.data[chart.dataIndex].emotion]),
+      },
+    },
   },
 };
 
 const Heatmap = () => {
   return (
-    <div
+    <DashboardCard
       style={{
-        height: "100px",
         margin: "0 auto",
         padding: "2em",
-        border: "2px solid black",
       }}
     >
-      <Chart type="matrix" data={data} options={options} />
-    </div>
+      <Chart width="100%" type="matrix" data={data} options={options} />
+    </DashboardCard>
   );
 };
 
