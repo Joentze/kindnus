@@ -118,7 +118,11 @@ const parseEmotions = (emotions) => {
         data.push({
           x: datetime,
           y: count ? count : 0,
-          d: roundTime(datetime),
+          d: roundTime(datetime).toLocaleDateString("en-US", {
+            weekday: "short",
+            hour: "numeric",
+            hour12: true,
+          }),
         });
       }
     }

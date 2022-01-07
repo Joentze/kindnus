@@ -138,7 +138,11 @@ const parseEmotions = (emotions) => {
     data.push({
       x: Math.ceil((i + 1) / 3),
       y: ((datetime) => (datetime.getHours() % 3) + 1)(datetime),
-      d: roundTime(datetime),
+      d: roundTime(datetime).toLocaleDateString("en-US", {
+        weekday: "short",
+        hour: "numeric",
+        hour12: true,
+      }),
       count: maxCount,
       emotion: Emotions[maxEmotion] >= 0 ? Emotions[maxEmotion] : 4,
     });
