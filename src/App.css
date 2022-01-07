@@ -42,7 +42,7 @@
   height: max-content;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 .centerContent {
   position: relative;
@@ -157,7 +157,6 @@
   min-height: 600px;
   height: max-content;
   margin-top: 50px;
-  /*background: rgba(220,220,220,0.4);*/
   display: flex;
   flex-wrap: wrap;
 }
@@ -216,6 +215,9 @@
 }
 
 @media all and (max-width: 700px) {
+  .moodBoardMainContainer {
+    flex-wrap: wrap-reverse;
+  }
   .moodDescriptionContainer {
     width: 70vw;
   }

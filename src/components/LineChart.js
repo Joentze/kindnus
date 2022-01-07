@@ -1,8 +1,9 @@
 import "chart.js/auto";
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
-//import DashboardCard from "./DashboardCard";
-
+import { Divider } from "@mui/material";
+import { emotionRootWord, emotionsNumMap } from "./misc/content";
+import Heatmap from "./Heatmap";
 /**
  * Generates an array of data objects for line chart
  *
@@ -39,8 +40,9 @@ const sampleData = (emotion) => {
   return data;
 };
 
-const data = {
-  datasets: [
+const data = (mood) => {
+  console.log(mood);
+  let allEmoData = [
     {
       label: "Happiness",
       data: sampleData(0),
@@ -69,7 +71,10 @@ const data = {
       borderColor: "#ec4899",
       tension: 0.1,
     },
-  ],
+  ];
+  return {
+    datasets: [allEmoData[emotionsNumMap[mood]]],
+  };
 };
 
 const scales = {
@@ -115,10 +120,17 @@ const options = {
   },
 };
 
-const LineChart = () => {
+const LineChart = ({ mood }) => {
   return (
     <div className={"centerContent moodDescriptionContainer"}>
-      <Line data={data} options={options} />
+      <h1>{emotionRootWord[mood]} Today</h1>
+      <Line data={data(mood)} options={options} />
+      <br></br>
+      <br></br>
+      <Divider />
+      <br></br>
+      <h1>Emotions Daily</h1>
+      <Heatmap />
     </div>
   );
 };
