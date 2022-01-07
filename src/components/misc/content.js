@@ -12,13 +12,12 @@ export const emotionsNumMap = {
   Loved: 3,
 };
 
-export const emotionRootWord = {
-  Angry: "Anger",
-  Happy: "Happiness",
-  Loved: "Love",
-  Sad: "Sadness",
-};
-
+export const Emotions = {
+  Happiness: 0,
+  Sadness: 1,
+  Anger: 2,
+  Love: 3,
+}
 export const emotionsWriteUp = {
   Happy: {
     definition: "Feeling or showing pleasure or contentment.",

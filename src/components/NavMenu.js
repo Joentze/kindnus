@@ -54,7 +54,10 @@ const NavMenu = () => {
             fontFamily: "Nunito",
             color: "#5959ff",
           }}
-          onClick={() => navigate("/")}
+          onClick={() => {
+            navigate("/");
+            handleClose();
+          }}
         >
           Send a Message
         </MenuItem>
@@ -64,7 +67,10 @@ const NavMenu = () => {
             fontFamily: "Nunito",
             color: "#5959ff",
           }}
-          onClick={() => navigate("/happy")}
+          onClick={() => {
+            navigate("/happy");
+            handleClose();
+          }}
         >
           Happy
         </MenuItem>
@@ -73,7 +79,10 @@ const NavMenu = () => {
             fontFamily: "Nunito",
             color: "#5959ff",
           }}
-          onClick={() => navigate("/sad")}
+          onClick={() => {
+            navigate("/sad");
+            handleClose();
+          }}
         >
           Sad
         </MenuItem>
@@ -82,7 +91,10 @@ const NavMenu = () => {
             fontFamily: "Nunito",
             color: "#5959ff",
           }}
-          onClick={() => navigate("/angry")}
+          onClick={() => {
+            navigate("/angry");
+            handleClose();
+          }}
         >
           Angry
         </MenuItem>
@@ -91,7 +103,10 @@ const NavMenu = () => {
             fontFamily: "Nunito",
             color: "#5959ff",
           }}
-          onClick={() => navigate("/loved")}
+          onClick={() => {
+            navigate("/loved");
+            handleClose();
+          }}
         >
           Love
         </MenuItem>
