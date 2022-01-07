@@ -50,6 +50,11 @@ const parseEmotions = (emotions) => {
   // }
   const getKey = (obj, val) => Object.keys(obj).find((key) => obj[key] === val);
 
+  const roundTime = (date) => {
+    date.setHours(date.getHours() + Math.round(date.getMinutes() / 60));
+    date.setMinutes(0, 0, 0);
+    return date;
+  };
   let datasets = [
     {
       label: "Happiness",
@@ -110,7 +115,11 @@ const parseEmotions = (emotions) => {
       for (let [hour, count] of counts.entries()) {
         const datetime = new Date();
         datetime.setHours(start.getHours() + hour);
-        data.push({ x: datetime, y: count ? count : 0, d: datetime });
+        data.push({
+          x: datetime,
+          y: count ? count : 0,
+          d: roundTime(datetime),
+        });
       }
     }
     dataset.data = data;
@@ -158,7 +167,7 @@ const scales = {
       display: false,
     },
     ticks: {
-      callback: (value) => `${value}%`,
+      callback: (value) => `${value}`,
     },
   },
   x: {
@@ -210,7 +219,6 @@ const LineChart = () => {
     });
     const emotionsData = parseEmotions(emotions);
     setEmotionsData(emotionsData);
-    console.log(emotionsData, randomData);
     setIsLoading(false);
   };
 
@@ -219,7 +227,6 @@ const LineChart = () => {
   }, []);
 
   return (
-
     <div className={"centerContent moodDescriptionContainer"}>
       {isLoading ? null : (
         <Line data={{ datasets: emotionsData }} options={options} />
