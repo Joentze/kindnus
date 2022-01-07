@@ -2,15 +2,17 @@ import db from "../config";
 import { useState } from "react";
 import { Tooltip, IconButton, Button } from "@mui/material";
 import { allEmotions, emotionsNumMap, emotionsMap } from "./misc/content";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import CircularProgress from '@mui/material/CircularProgress';
 const InputForm =()=>{
     const [emo, setEmo] = useState(null);
-    const [emoSelected, setEmoSelcted] = useState(false);
+    const [emoSelected, setEmoSelected] = useState(false);
     const [messageStatus, setMessageStatus] = useState(false);
     const writeMessageToFB =()=>{
         if(!messageStatus && emoSelected){
             let writeObj ={
                 message:document.getElementById('textAreaInput').value,
-                emotion:emo,
+                emotion:emotionsNumMap[emo],
                 timestamp:new Date()
             }
             db.collection("messages").add(writeObj).then(
@@ -25,12 +27,38 @@ const InputForm =()=>{
     }
     return(
         <>
+        {
+        messageStatus?(
+            <div>
+                <CircularProgress
+                    style={{
+                        color:"#5959ff"
+                    }}
+                />
+            </div>
+        ):
+        (
+        <div>
         <div>
             {
                 emo?(
-                    <></>
-                ):(
-                    allEmotions.map((item, key)=>{
+                    <div>
+                        <div>
+                            <IconButton
+                            onClick={()=>{
+                                setEmo(null)
+                                setEmoSelected(false)
+                            }}
+                            >
+                                <ArrowBackIosIcon></ArrowBackIosIcon>
+                            </IconButton>
+                        </div>
+                        <div>
+                            <h2>{emo} {emotionsMap[emo]}</h2>
+                        </div>
+                    </div>
+                ):(<div>
+                    {allEmotions.map((item, key)=>{
                         return (
                             <Tooltip title={item} key={key}>
                                 <IconButton
@@ -41,15 +69,16 @@ const InputForm =()=>{
                                     margin:"5px"
                                 }}
                                 onClick={()=>{
-                                    setEmo(emotionsNumMap[item])
-                                    setEmoSelcted(true)
+                                    setEmo(item)
+                                    setEmoSelected(true)
                                 }}
                                 >
                                     {emotionsMap[item]}
                                 </IconButton>
                             </Tooltip>
                         )
-                    })
+                    })}
+                    </div>
                 )
             }
         </div>
@@ -71,6 +100,7 @@ const InputForm =()=>{
             Send ✈️
             </Button>
         </div>
+        </div>)}
         </>
     )
 }
