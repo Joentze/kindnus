@@ -70,10 +70,10 @@ const MoodContainer = ({ content, mood }) => {
               />
             );
           })}
-          <br></br>
-          <br></br>
-          <Divider />
           <p>{definition}</p>
+          <Divider />
+          <p>{content["message"]}</p>
+          <br></br>
           <br></br>
           <div className={"bottomRightMessageButton"}>
             <Button

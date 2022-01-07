@@ -26,6 +26,7 @@ const InputForm = () => {
           //sets message status to prevent spam
           () => {
             setMessageStatus(true);
+            navigate("/feelings");
           }
         )
         .catch((error) => {
@@ -124,7 +125,6 @@ const InputForm = () => {
               }}
               onClick={() => {
                 writeMessageToFB();
-                navigate("/feelings");
               }}
             >
               Send ✈️

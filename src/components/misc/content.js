@@ -14,9 +14,10 @@ export const emotionsNumMap = {
 
 export const emotionsWriteUp = {
   Happy: {
-    definition: "feeling or showing pleasure or contentment.",
+    definition: "Feeling or showing pleasure or contentment.",
     synonyms: ["contented", "joyous", "cheerful", "merry"],
-    message: "",
+    message:
+      "In this fast and volatile world, happiness is hard to come by 😰Cherish this moment and celebrate! Tell your friends that you love them 💌",
   },
   Sad: {
     definition: "feeling or showing sorrow; unhappy.",
