@@ -12,6 +12,29 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.emotionSelectButton{
+  position: relative;
+  width:200px;
+  border-radius:10px;
+  text-align: left;
+  margin:5px;
+  padding-left:10px;
+  font-size: 16px;
+  font-family: 'Nunito';
+  font-weight: bolder;
+  color:#7867c5;
+  background:transparent;
+  border:none;
+}
+.emotionSelectButton:hover{
+  transition-duration: 0.1s;
+  background:rgba(220,220,220,0.3);
+  color:#5959ff;
+}
+.emotionSelectButton:checked{
+  background:lightgray;
+}
+
 .headerTitlePage{
   position:relative;
   width: max-content;
