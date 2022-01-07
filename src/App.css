@@ -107,7 +107,33 @@
   color: #61dafb;
 }
 
-
+@media all and (max-width: 700px) {
+  .mainBackground{
+    position:fixed;
+  }
+  .headerTitlePage{
+    margin-top:100px;
+  }
+  .headerTitlePage h1{
+    font-size: 40px;
+  }
+  .loadingBoxCircular{
+    margin-top:100px;
+  }
+  .headerTitlePage p{
+    margin-top:-20px;
+    font-size: 20px;
+  }
+  .SMContainer{
+    width:100vw;
+  }
+  .textAreaBox{
+    width:70vw;
+    margin-left:20px;
+    margin-right:20px;
+    height:40vw;
+  }
+}
 
 @keyframes App-logo-spin {
   from {

@@ -71,7 +71,7 @@ const InputForm =()=>{
                             >{emo} {emotionsMap[emo]}</h2>
                         </div>
                     </div>
-                ):(<div>
+                ):(<div class={"centerContent emojiArray"}>
                     {allEmotions.map((item, key)=>{
                         return (
                             <Tooltip title={item} key={key} placement="top">
