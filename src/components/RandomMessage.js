@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import db from "../config";
-import PersonIcon from "@mui/icons-material/Person";
+
 const RandomMessage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [randomMessage, setRandomMessage] = useState([]);

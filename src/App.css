@@ -110,6 +110,14 @@
   left: 50%;
   transform: translateX(-50%) translateY(-1.25rem);
 }
+.loadingMessage {
+  color: #22c55e;
+  position: absolute;
+  font-weight: bold;
+  font-size: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-1.25rem);
+}
 .textAreaBox {
   margin-top: 30px;
   width: 50vw;
