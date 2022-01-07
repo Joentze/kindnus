@@ -44,7 +44,7 @@ const sampleData = (emotion) => {
   return data;
 };
 
-const parseEmotions = (emotions) => {
+const parseEmotions = (emotions, selected) => {
   // for (const [emotion, num] of Object.entries(Emotions)) {
   //   let data = []
   // }
@@ -55,7 +55,7 @@ const parseEmotions = (emotions) => {
     date.setMinutes(0, 0, 0);
     return date;
   };
-  let datasets = [
+  let possibleDatasets = [
     {
       label: "Happiness",
       data: [],
@@ -85,6 +85,13 @@ const parseEmotions = (emotions) => {
       tension: 0.1,
     },
   ];
+
+  let datasets = [];
+  for (let i = 0; i < 4; i++) {
+    if (selected.includes(i)) {
+      datasets.push(possibleDatasets[i]);
+    }
+  }
 
   const end = new Date();
 
@@ -207,7 +214,7 @@ const options = {
   },
 };
 
-const LineChart = () => {
+const LineChart = ({ selected }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [emotionsData, setEmotionsData] = useState([]);
 
@@ -221,7 +228,7 @@ const LineChart = () => {
     data.docs.forEach((emotion) => {
       emotions.push(emotion.data());
     });
-    const emotionsData = parseEmotions(emotions);
+    const emotionsData = parseEmotions(emotions, selected);
     setEmotionsData(emotionsData);
     setIsLoading(false);
   };
