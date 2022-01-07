@@ -3,13 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+>>>>>>> ca9f17b5de1014e8b57ea35f2c29c8284678d5b8
     "@mui/material": "^5.2.7",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.6.1",
+<<<<<<< HEAD
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+=======
+    "js-confetti": "^0.10.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^6.2.1",
+>>>>>>> ca9f17b5de1014e8b57ea35f2c29c8284678d5b8
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.3"
