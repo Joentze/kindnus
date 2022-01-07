@@ -1,7 +1,7 @@
 import "chart.js/auto";
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
-import DashboardCard from "./DashboardCard";
+//import DashboardCard from "./DashboardCard";
 
 /**
  * Generates an array of data objects for line chart
@@ -117,13 +117,9 @@ const options = {
 
 const LineChart = () => {
   return (
-    <DashboardCard
-      style={{
-        marginBottom: "2rem",
-      }}
-    >
+    <div className={"centerContent moodDescriptionContainer"}>
       <Line data={data} options={options} />
-    </DashboardCard>
+    </div>
   );
 };
 

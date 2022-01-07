@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import db from "../config";
-
+import PersonIcon from "@mui/icons-material/Person";
 const RandomMessage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [randomMessage, setRandomMessage] = useState([]);
@@ -14,7 +14,7 @@ const RandomMessage = (props) => {
     const queryRef = messagesRef
       .where("emotion", "==", props.emotion)
       .orderBy("timestamp", "desc")
-      .limit(2);
+      .limit(10);
     const data = await queryRef.get();
 
     const messages = [];
@@ -38,11 +38,9 @@ const RandomMessage = (props) => {
   }
 
   return (
-    <section>
-      <h3>Random Messages</h3>
-      <p>Done</p>
-      <blockquote>{randomMessage.message}</blockquote>
-    </section>
+    <>
+      <p style={{ color: "#5959ff" }}>{randomMessage.message}</p>
+    </>
   );
 };
 
