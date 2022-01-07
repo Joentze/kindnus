@@ -3,18 +3,36 @@ import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
 import DashboardCard from "./DashboardCard";
 
-const sampleData = () => {
+/**
+ * Generates an array of data objects for line chart
+ *
+ * @param {number} emotion
+ * @returns {Array}
+ * @example
+ * >>> sampleData()
+ * [
+ *   {
+ *      x: string,
+ *      y: number,
+ *      d: string,
+ *      emotion: number,
+ *   }
+ * ]
+ */
+const sampleData = (emotion) => {
   const date = new Date();
   const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
   const data = [];
   const end = today;
   let dt = new Date(new Date().setDate(end.getDate() - 7));
+
   while (dt <= end) {
     const iso = dt.toISOString().substring(0, 10);
     data.push({
       x: iso,
-      y: Math.random() * 50, //
+      y: Math.round(Math.random() * 50), //
       d: iso,
+      emotion,
     });
     dt = new Date(dt.setDate(dt.getDate() + 1));
   }
@@ -25,28 +43,28 @@ const data = {
   datasets: [
     {
       label: "Happiness",
-      data: sampleData(),
+      data: sampleData(0),
       fill: false,
       borderColor: "#eab308",
       tension: 0.1,
     },
     {
       label: "Sadness",
-      data: sampleData(),
+      data: sampleData(1),
       fill: false,
       borderColor: "#3b82f6",
       tension: 0.1,
     },
     {
       label: "Anger",
-      data: sampleData(),
+      data: sampleData(2),
       fill: false,
       borderColor: "#ef4444",
       tension: 0.1,
     },
     {
       label: "Love",
-      data: sampleData(),
+      data: sampleData(3),
       fill: false,
       borderColor: "#ec4899",
       tension: 0.1,
@@ -60,6 +78,9 @@ const scales = {
     grid: {
       display: false,
     },
+    ticks: {
+      callback: (value) => `${value}%`,
+    },
   },
   x: {
     type: "time",
@@ -70,7 +91,7 @@ const scales = {
       maxRotation: 0,
       autoSkip: true,
       font: {
-        size: 9,
+        size: 15,
       },
     },
   },

@@ -11,7 +11,10 @@ const RandomMessage = (props) => {
   const fetchMessages = async () => {
     setIsLoading(true);
     const messagesRef = db.collection("messages");
-    const queryRef = messagesRef.where("emotion", "==", props.emotion);
+    const queryRef = messagesRef
+      .where("emotion", "==", props.emotion)
+      .orderBy("timestamp", "desc")
+      .limit(2);
     const data = await queryRef.get();
 
     const messages = [];

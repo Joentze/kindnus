@@ -6,6 +6,22 @@ import { MatrixController, MatrixElement } from "chartjs-chart-matrix";
 import DashboardCard from "./DashboardCard";
 ChartJS.register(MatrixController, MatrixElement);
 
+/**
+ * Generates an array of data objects for heatmap
+ *
+ * @returns {Array}
+ * @example
+ * >>> sampleData()
+ * [
+ *   {
+ *      x: string,
+ *      y: number,
+ *      d: string,
+ *      count: number,
+ *      emotion: number,
+ *   }
+ * ]
+ */
 const sampleData = () => {
   const date = new Date();
   const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
