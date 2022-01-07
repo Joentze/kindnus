@@ -5,7 +5,7 @@ import { allEmotions, emotionsNumMap, emotionsMap } from "./misc/content";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CircularProgress from '@mui/material/CircularProgress';
 import JSConfetti from 'js-confetti'
-
+import { useNavigate } from "react-router";
 
 
 
@@ -14,6 +14,7 @@ const InputForm =()=>{
     const [emoSelected, setEmoSelected] = useState(false);
     const [messageStatus, setMessageStatus] = useState(false);
     const confetti = new JSConfetti()
+    let navigate = useNavigate()
     const writeMessageToFB =()=>{
         if(!messageStatus && emoSelected){
             let writeObj ={
@@ -116,6 +117,7 @@ const InputForm =()=>{
             }}
             onClick={()=>{
                 writeMessageToFB()
+                navigate('/feelings')
             }}
             >
             Send ✈️

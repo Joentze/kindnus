@@ -114,7 +114,52 @@
   height:100%;
   background: radial-gradient(116.63% 116.63% at 50% -11.5%, #FFFFFF 66.74%, #FFCFBA 84.9%, #9999FF 100%);
 }
+.moodBackground{
+  position: absolute;
+  z-index: -1;
+  top:0;
+  left: 0;
+  width:100%;
+  height:100%;
+  background: radial-gradient(115.91% 120.09% at -10% 11.5%, #FFFFFF 66.74%, #FFCFBA 84.9%, #9999FF 100%);
+}
+.moodBoardSubContainer{
+  width:40vw;
+  height:max-content;
+  min-height:200px;
+}
+.moodBoardMainContainer{
+  position:relative;
+  width:85vw;
+  min-height:600px;
+  height:max-content;
+  margin-top: 50px;
+  /*background: rgba(220,220,220,0.4);*/
+  display: flex;
+  flex-wrap: wrap;
+}
+.moodDescriptionContainer{
+  width:30vw;
+  height:400px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(200,200,200,0.8);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding:20px;
+}
 
+.moodDescriptionContainer h1{
+  font-family: 'Open Sans';
+  background: -webkit-linear-gradient(180.16deg, #5a5aff 3.07%, #ffab87 252.2%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.moodDescriptionContainer p{
+  font-family: 'Nunito';
+  padding:10px;
+  color:rgb(131, 131, 131)
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -131,6 +176,12 @@
 }
 
 @media all and (max-width: 700px) {
+  .moodDescriptionContainer{
+    width:70vw;
+  }
+  .moodBoardSubContainer{
+    width:400px;
+  }
   .mainBackground{
     position:fixed;
   }
