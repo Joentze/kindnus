@@ -257,7 +257,7 @@ const LineChart = ({ selected, mood }) => {
           <br></br>
           <Divider />
           <h1>Emotions Today</h1>
-          <p>Top emotions for each day 🏆</p>
+          <p>Top emotions per hour 🏆</p>
           <Heatmap />
         </>
       )}
