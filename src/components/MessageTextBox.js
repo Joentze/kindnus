@@ -1,6 +1,7 @@
 import db from "../config";
 import { useState } from "react";
-import { Tooltip, Button } from "@mui/material";
+import { Tooltip, IconButton, Button } from "@mui/material";
+import { allEmotions, emotionsNumMap, emotionsMap } from "./misc/content";
 const InputForm =()=>{
     const [emo, setEmo] = useState(null);
     const [emoSelected, setEmoSelcted] = useState(false);
@@ -25,6 +26,32 @@ const InputForm =()=>{
     return(
         <>
         <div>
+            {
+                emo?(
+                    <></>
+                ):(
+                    allEmotions.map((item, key)=>{
+                        return (
+                            <Tooltip title={item} key={key}>
+                                <IconButton
+                                component="span"
+                                color="primary"
+                                style={{
+                                    width:"50px",
+                                    margin:"5px"
+                                }}
+                                onClick={()=>{
+                                    setEmo(emotionsNumMap[item])
+                                    setEmoSelcted(true)
+                                }}
+                                >
+                                    {emotionsMap[item]}
+                                </IconButton>
+                            </Tooltip>
+                        )
+                    })
+                )
+            }
         </div>
         <div>
             <textarea id={"textAreaInput"}></textarea>
@@ -40,7 +67,9 @@ const InputForm =()=>{
             onClick={()=>{
                 writeMessageToFB()
             }}
-            ></Button>
+            >
+            Send ✈️
+            </Button>
         </div>
         </>
     )
