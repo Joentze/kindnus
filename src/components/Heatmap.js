@@ -27,21 +27,25 @@ const sampleData = () => {
   const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
   const data = [];
   const end = today;
-  let dt = new Date(new Date().setDate(end.getDate() - 365));
+  let dt = new Date(
+    new Date(new Date().setDate(end.getDate() - 2)).setHours(end.getHours())
+  );
+  let dt_count = 1;
   while (dt <= end) {
     const iso = dt.toISOString().substring(0, 10);
     data.push({
-      x: iso,
-      y: ((dt) => `${((dt.getDay() + 6) % 7) + 1}`)(dt), //
+      x: Math.ceil(dt_count / 3),
+      y: ((dt) => (dt.getHours() % 3) + 1)(dt),
       d: iso,
       count: Math.random() * 25,
       emotion: Math.floor(Math.random() * 4),
     });
-    dt = new Date(dt.setDate(dt.getDate() + 1));
+    dt = new Date(dt.setHours(dt.getHours() + 1));
+    dt_count++;
   }
+  console.log(data);
   return data;
 };
-//
 const data = {
   datasets: [
     {
@@ -66,18 +70,16 @@ const data = {
         }[chart.dataset.data[chart.dataIndex].emotion];
       },
       borderRadius: 1,
-      borderWidth: 1,
+      borderWidth: 0,
       hoverBackgroundColor: "rgba(156, 163, 175, 0.2)",
       hoverBorderColor: "rgba(31, 44, 55, 0.1)",
       width: (chart) => {
-        // 53 weeks of the year
         const area = chart.chart.chartArea || {};
-        return (area.right - area.left) / 53 - 1;
+        return (area.right - area.left) / 16 - 4;
       },
       height: (chart) => {
-        // 7 days of the week
         const area = chart.chart.chartArea || {};
-        return (area.bottom - area.top) / 7 - 1;
+        return (area.bottom - area.top) / 3 - 4;
       },
     },
   ],
@@ -88,15 +90,6 @@ const scales = {
     type: "time",
     display: false,
     offset: true,
-    time: {
-      unit: "day",
-      round: "day",
-      isoWeek: 1,
-      parser: "i",
-      displayFormats: {
-        day: "iii",
-      },
-    },
     reverse: true,
     position: "right",
     ticks: {
@@ -113,18 +106,22 @@ const scales = {
     },
   },
   x: {
-    type: "time",
-    position: "bottom",
-    offset: true,
-    time: {
-      unit: "day",
-      round: "week",
-      isoWeekDay: 1,
-      displayFormats: {
-        week: "MMM dd",
-      },
-    },
+    type: "timeseries",
+    display: false,
+    // position: "bottom",
+    // offset: true,
+    // unit: "hour",
+    // round: "hour",
+    // displayFormats: {
+    //   week: "MMM dd",
+    // },
     ticks: {
+      callback: (val) => {
+        console.log(val);
+        console.log(typeof val);
+        return val;
+      },
+
       maxRotation: 0,
       autoSkip: true,
       font: {
@@ -142,7 +139,7 @@ const scales = {
 const options = {
   scales,
   maintainAspectRatio: true,
-  aspectRatio: 6,
+  aspectRatio: 4.5,
   plugins: {
     legend: false,
     tooltip: {
