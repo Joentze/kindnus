@@ -75,7 +75,7 @@ const InputForm = () => {
         </div>
       ) : (
         <div className={"SMContainer"}>
-          <div className={" emojiContainer"}>
+          <div className={" emojiContainer centerContent"}>
             {emo ? (
               <div
                 style={{

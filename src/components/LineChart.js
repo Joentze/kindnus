@@ -4,9 +4,11 @@ import "chart.js/auto";
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
 import DashboardCard from "./DashboardCard";
+import { Divider } from "@mui/material";
 import db from "../config";
 import { useEffect, useState } from "react";
-import { Emotions } from "./misc/content";
+import { Emotions, emotionsNumMap, emotionsRootWord } from "./misc/content";
+import Heatmap from "./Heatmap";
 
 /**
  * Generates an array of data objects for line chart
@@ -138,8 +140,8 @@ const parseEmotions = (emotions, selected) => {
   return datasets;
 };
 
-const randomData = {
-  datasets: [
+const randomData = (mood) => {
+  const allEmoData = [
     {
       label: "Happiness",
       data: sampleData(0),
@@ -168,7 +170,10 @@ const randomData = {
       borderColor: "#ec4899",
       tension: 0.1,
     },
-  ],
+  ];
+  return {
+    datasets: [allEmoData[emotionsNumMap[mood]]],
+  };
 };
 
 const scales = {
@@ -214,7 +219,7 @@ const options = {
   },
 };
 
-const LineChart = ({ selected }) => {
+const LineChart = ({ selected, mood }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [emotionsData, setEmotionsData] = useState([]);
 
@@ -239,8 +244,22 @@ const LineChart = ({ selected }) => {
 
   return (
     <div className={"centerContent moodDescriptionContainer"}>
-      {isLoading ? null : (
-        <Line data={{ datasets: emotionsData }} options={options} />
+      {isLoading ? (
+        <>
+          <p>Loading Chart...</p>
+        </>
+      ) : (
+        <>
+          <h1>{emotionsRootWord[mood]} Today</h1>
+          <p>Number of {mood}-feeling people today!</p>
+          <br></br>
+          <Line data={{ datasets: emotionsData }} options={options} />
+          <br></br>
+          <Divider />
+          <h1>Emotions Today</h1>
+          <p>Top emotions for each day 🏆</p>
+          <Heatmap />
+        </>
       )}
     </div>
   );

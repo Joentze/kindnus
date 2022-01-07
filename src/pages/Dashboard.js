@@ -4,7 +4,6 @@ import Heatmap from "../components/Heatmap";
 import MainBackground from "../components/MainBackground";
 import RandomMessage from "../components/RandomMessage";
 import LineChart from "../components/LineChart";
-
 import styles from "./Dashboard.module.css";
 import DashboardCard from "../components/DashboardCard";
 

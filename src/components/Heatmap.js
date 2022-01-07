@@ -5,7 +5,7 @@ import { Chart as ChartJS } from "chart.js";
 import "chartjs-adapter-date-fns";
 import { Chart } from "react-chartjs-2";
 import { MatrixController, MatrixElement } from "chartjs-chart-matrix";
-import DashboardCard from "./DashboardCard";
+//import DashboardCard from "./DashboardCard";
 import { useEffect, useState } from "react";
 import { Emotions } from "./misc/content";
 import db from "../config";
@@ -284,12 +284,7 @@ const Heatmap = () => {
     getEmotions();
   }, []);
   return (
-    <DashboardCard
-      style={{
-        margin: "0 auto",
-        padding: "2em",
-      }}
-    >
+    <>
       {isLoading ? null : (
         <Chart
           width="100%"
@@ -298,7 +293,7 @@ const Heatmap = () => {
           options={options}
         />
       )}
-    </DashboardCard>
+    </>
   );
 };
 

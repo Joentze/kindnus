@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,7 +8,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const NavMenu = () => {
   const navigate = useNavigate();
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -51,12 +49,67 @@ const NavMenu = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => navigate("/")}>Send a message</MenuItem>
+        <MenuItem
+          style={{
+            fontFamily: "Nunito",
+            color: "#5959ff",
+          }}
+          onClick={() => {
+            navigate("/");
+            handleClose();
+          }}
+        >
+          Send a Message
+        </MenuItem>
         <Divider />
-        <MenuItem onClick={() => navigate("/happy")}>Happy</MenuItem>
-        <MenuItem onClick={() => navigate("/sad")}>Sad</MenuItem>
-        <MenuItem onClick={() => navigate("/angry")}>Angry</MenuItem>
-        <MenuItem onClick={() => navigate("/loved")}>Love</MenuItem>
+        <MenuItem
+          style={{
+            fontFamily: "Nunito",
+            color: "#5959ff",
+          }}
+          onClick={() => {
+            navigate("/happy");
+            handleClose();
+          }}
+        >
+          Happy
+        </MenuItem>
+        <MenuItem
+          style={{
+            fontFamily: "Nunito",
+            color: "#5959ff",
+          }}
+          onClick={() => {
+            navigate("/sad");
+            handleClose();
+          }}
+        >
+          Sad
+        </MenuItem>
+        <MenuItem
+          style={{
+            fontFamily: "Nunito",
+            color: "#5959ff",
+          }}
+          onClick={() => {
+            navigate("/angry");
+            handleClose();
+          }}
+        >
+          Angry
+        </MenuItem>
+        <MenuItem
+          style={{
+            fontFamily: "Nunito",
+            color: "#5959ff",
+          }}
+          onClick={() => {
+            navigate("/loved");
+            handleClose();
+          }}
+        >
+          Love
+        </MenuItem>
       </Menu>
     </div>
   );
