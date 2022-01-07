@@ -1,13 +1,17 @@
-import "./App.css";
-import SendMessage from "./pages/SendMessage";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
+
+import './App.css';
+import SendMessage from './pages/SendMessage';
+import Feelings from './pages/Feelings'
+import MoodBoard from './pages/MoodBoard';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<SendMessage />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path = "/" element={<SendMessage/>}/>
+        <Route exact path = "/feelings" element={<Feelings/>}/>
+        <Route exact path = "/Happy" element={<MoodBoard mood={"Happy"}/>}/>
       </Routes>
     </Router>
   );
