@@ -5,12 +5,14 @@ import { allEmotions, emotionsNumMap, emotionsMap } from "./misc/content";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import CircularProgress from "@mui/material/CircularProgress";
 import JSConfetti from "js-confetti";
+import { useNavigate } from "react-router";
 
 const InputForm = () => {
   const [emo, setEmo] = useState(null);
   const [emoSelected, setEmoSelected] = useState(false);
   const [messageStatus, setMessageStatus] = useState(false);
   const confetti = new JSConfetti();
+  let navigate = useNavigate();
   const writeMessageToFB = () => {
     if (!messageStatus && emoSelected) {
       let writeObj = {
@@ -35,10 +37,12 @@ const InputForm = () => {
   return (
     <>
       {messageStatus ? (
-        <div>
+        <div className={"centerContent loadingBoxCircular"}>
           <CircularProgress
             style={{
-              color: "#5959ff",
+              marginTop: "5px",
+              color: "#7867c5",
+              fontFamily: "Nunito",
             }}
           />
         </div>
@@ -70,6 +74,7 @@ const InputForm = () => {
                     style={{
                       marginTop: "5px",
                       color: "#7867c5",
+                      fontSize: "20px",
                       fontFamily: "Nunito",
                     }}
                   >
@@ -78,7 +83,7 @@ const InputForm = () => {
                 </div>
               </div>
             ) : (
-              <div>
+              <div className={"centerContent emojiArray"}>
                 {allEmotions.map((item, key) => {
                   return (
                     <Tooltip title={item} key={key} placement="top">
@@ -106,9 +111,9 @@ const InputForm = () => {
             )}
           </div>
           <div className={"centerContent"}>
-            <textarea id={"textAreaInput"}></textarea>
+            <textarea id={"textAreaInput"} className={"textAreaBox"}></textarea>
           </div>
-          <div className={"centerContent"}>
+          <div className={"centerContent sendButtonMsgPage"}>
             <Button
               variant="contained"
               size="large"
@@ -119,6 +124,7 @@ const InputForm = () => {
               }}
               onClick={() => {
                 writeMessageToFB();
+                navigate("/feelings");
               }}
             >
               Send ✈️
@@ -126,6 +132,7 @@ const InputForm = () => {
           </div>
         </div>
       )}
+      ;
     </>
   );
 };

@@ -219,15 +219,12 @@ const LineChart = () => {
   }, []);
 
   return (
-    <DashboardCard
-      style={{
-        marginBottom: "2rem",
-      }}
-    >
+
+    <div className={"centerContent moodDescriptionContainer"}>
       {isLoading ? null : (
         <Line data={{ datasets: emotionsData }} options={options} />
       )}
-    </DashboardCard>
+    </div>
   );
 };
 
