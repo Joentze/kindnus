@@ -3,7 +3,6 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
-    "jest/globals": true,
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
   parserOptions: {
@@ -17,4 +16,12 @@ module.exports = {
   rules: {
     "react/react-in-jsx-scope": "off",
   },
+  overrides: [
+    {
+      files: ["**/*.test.js", "**/*.test.jsx"],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };
