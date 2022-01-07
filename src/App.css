@@ -99,6 +99,17 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.emojiContainer {
+  position: relative;
+}
+.errorMessage {
+  color: #b91c1c;
+  position: absolute;
+  font-weight: bold;
+  font-size: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-1.25rem);
+}
 .textAreaBox {
   margin-top: 30px;
   width: 50vw;
@@ -182,7 +193,7 @@
 .moodDescriptionContainer p {
   font-family: "Nunito";
   padding: 10px;
-  color: rgb(131, 131, 131);
+  color: #7867c5;
   text-align: justify;
 }
 .bottomRightMessageButton {

@@ -1,6 +1,6 @@
 import { Divider, Button, IconButton, Tooltip } from "@mui/material";
 import { useState } from "react";
-import { allEmotions } from "./misc/content";
+import { allEmotions, emotionsMap } from "./misc/content";
 import Chip from "@mui/material/Chip";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import CasinoIcon from "@mui/icons-material/Casino";
@@ -54,7 +54,9 @@ const MoodContainer = ({ content, mood }) => {
         </>
       ) : (
         <>
-          <h1>{allEmotions[mood]}</h1>
+          <h1>
+            {allEmotions[mood]} {emotionsMap[mood]}
+          </h1>
           {synonyms.map((item, key) => {
             return (
               <Chip

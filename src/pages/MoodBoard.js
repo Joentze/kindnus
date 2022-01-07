@@ -11,7 +11,7 @@ const MoodBoard = ({ mood }) => {
       <MoodBackground />
       <div className={"moodBoardMainContainer centerContent"}>
         <div className={"moodBoardSubContainer centerContent"}>
-          <LineChart mood={mood} />
+          <LineChart selected={[emotionsNumMap[mood]]} mood={mood} />
         </div>
         <div className={"moodBoardSubContainer centerContent"}>
           <MoodContainer content={content} mood={feelingNo}></MoodContainer>

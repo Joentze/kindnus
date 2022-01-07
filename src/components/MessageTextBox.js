@@ -7,16 +7,41 @@ import CircularProgress from "@mui/material/CircularProgress";
 import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router";
 
+import Filter from "bad-words";
+
 const InputForm = () => {
+  const filter = new Filter();
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
   const [emo, setEmo] = useState(null);
   const [emoSelected, setEmoSelected] = useState(false);
   const [messageStatus, setMessageStatus] = useState(false);
   const confetti = new JSConfetti();
   let navigate = useNavigate();
+
   const writeMessageToFB = () => {
-    if (!messageStatus && emoSelected) {
+    const userMessage = document.getElementById("textAreaInput").value;
+
+    const handleError = (message) => {
+      setHasError(true);
+      setErrorMessage(message);
+    };
+
+    // Profanity
+    if (filter.isProfane(userMessage))
+      return handleError("Please write a nice message :)");
+
+    // Too little words
+    if (userMessage.length < 40)
+      return handleError("Please write a little bit more :)");
+
+    // Emoji not selected
+    if (!emoSelected) return handleError("Please select one of the emojis :)");
+
+    if (!messageStatus) {
       let writeObj = {
-        message: document.getElementById("textAreaInput").value,
+        message: userMessage,
         emotion: emotionsNumMap[emo],
         timestamp: new Date(),
       };
@@ -26,6 +51,7 @@ const InputForm = () => {
           //sets message status to prevent spam
           () => {
             setMessageStatus(true);
+            setHasError(false);
             navigate("/feelings");
           }
         )
@@ -49,7 +75,7 @@ const InputForm = () => {
         </div>
       ) : (
         <div className={"SMContainer"}>
-          <div className={"centerContent"}>
+          <div className={" emojiContainer centerContent"}>
             {emo ? (
               <div
                 style={{
@@ -109,6 +135,11 @@ const InputForm = () => {
                   );
                 })}
               </div>
+            )}
+            {hasError ? (
+              <p className="errorMessage centerContent">{errorMessage}</p>
+            ) : (
+              ""
             )}
           </div>
           <div className={"centerContent"}>

@@ -4,9 +4,11 @@ import "chart.js/auto";
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
 import DashboardCard from "./DashboardCard";
+import { Divider } from "@mui/material";
 import db from "../config";
 import { useEffect, useState } from "react";
-import { Emotions, emotionsNumMap } from "./misc/content";
+import { Emotions, emotionsNumMap, emotionsRootWord } from "./misc/content";
+import Heatmap from "./Heatmap";
 
 /**
  * Generates an array of data objects for line chart
@@ -44,7 +46,7 @@ const sampleData = (emotion) => {
   return data;
 };
 
-const parseEmotions = (emotions) => {
+const parseEmotions = (emotions, selected) => {
   // for (const [emotion, num] of Object.entries(Emotions)) {
   //   let data = []
   // }
@@ -55,7 +57,7 @@ const parseEmotions = (emotions) => {
     date.setMinutes(0, 0, 0);
     return date;
   };
-  let datasets = [
+  let possibleDatasets = [
     {
       label: "Happiness",
       data: [],
@@ -85,6 +87,13 @@ const parseEmotions = (emotions) => {
       tension: 0.1,
     },
   ];
+
+  let datasets = [];
+  for (let i = 0; i < 4; i++) {
+    if (selected.includes(i)) {
+      datasets.push(possibleDatasets[i]);
+    }
+  }
 
   const end = new Date();
 
@@ -118,7 +127,11 @@ const parseEmotions = (emotions) => {
         data.push({
           x: datetime,
           y: count ? count : 0,
-          d: roundTime(datetime),
+          d: roundTime(datetime).toLocaleDateString("en-US", {
+            weekday: "short",
+            hour: "numeric",
+            hour12: true,
+          }),
         });
       }
     }
@@ -206,7 +219,7 @@ const options = {
   },
 };
 
-const LineChart = ({ mood }) => {
+const LineChart = ({ selected, mood }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [emotionsData, setEmotionsData] = useState([]);
 
@@ -220,7 +233,7 @@ const LineChart = ({ mood }) => {
     data.docs.forEach((emotion) => {
       emotions.push(emotion.data());
     });
-    const emotionsData = parseEmotions(emotions);
+    const emotionsData = parseEmotions(emotions, selected);
     setEmotionsData(emotionsData);
     setIsLoading(false);
   };
@@ -236,7 +249,17 @@ const LineChart = ({ mood }) => {
           <p>Loading Chart...</p>
         </>
       ) : (
-        <Line data={{ datasets: emotionsData }} options={options} />
+        <>
+          <h1>{emotionsRootWord[mood]} Today</h1>
+          <p>Number of {mood}-feeling people today!</p>
+          <br></br>
+          <Line data={{ datasets: emotionsData }} options={options} />
+          <br></br>
+          <Divider />
+          <h1>Emotions Today</h1>
+          <p>Top emotions for each day 🏆</p>
+          <Heatmap />
+        </>
       )}
     </div>
   );

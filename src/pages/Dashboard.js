@@ -19,7 +19,7 @@ const Dashboard = () => {
 
         <div className={styles.content}>
           <div className={styles.charts}>
-            <LineChart />
+            <LineChart selected={[0, 1, 2, 3]} />
             <Heatmap />
           </div>
           <DashboardCard>
