@@ -5,7 +5,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path = "/" element={<SendMessage/>}/>
+        <Route exact path="/" element={<SendMessage />} />
       </Routes>
     </Router>
   );
