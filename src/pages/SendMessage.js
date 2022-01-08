@@ -66,7 +66,6 @@ const SendMessage = () => {
                 </div>
                 <InputForm />
                 <div className="homeRandomMessages">
-
                     {
                         messages.map((message, index) => {
 
