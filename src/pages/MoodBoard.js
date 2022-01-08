@@ -1,24 +1,23 @@
-import { emotionsNumMap, emotionsWriteUp } from "../components/misc/content"
-import MoodBackground from "../components/MoodBackground"
-import MoodContainer from "../components/MoodContainer"
-const MoodBoard =({mood})=>{
-    let content = emotionsWriteUp[mood]
-    let feelingNo = emotionsNumMap[mood]
-    return (
-        <>
-        <MoodBackground/>
-        <div className={"moodBoardMainContainer centerContent"}>
-            <div className={"moodBoardSubContainer centerContent"}>
+import { emotionsNumMap, emotionsWriteUp } from "../components/misc/content";
+import MoodBackground from "../components/MoodBackground";
+import MoodContainer from "../components/MoodContainer";
+import LineChart from "../components/LineChart";
 
-            </div>
-            <div className={"moodBoardSubContainer centerContent"}>
-                <MoodContainer
-                    content = {content}
-                    mood = {feelingNo}
-                ></MoodContainer>
-            </div>
+const MoodBoard = ({ mood }) => {
+  let content = emotionsWriteUp[mood];
+  let feelingNo = emotionsNumMap[mood];
+  return (
+    <>
+      <MoodBackground />
+      <div className={"moodBoardMainContainer centerContent"}>
+        <div className={"moodBoardSubContainer centerContent"}>
+          <LineChart selected={[emotionsNumMap[mood]]} mood={mood} />
         </div>
-        </>
-    )
-}
-export default MoodBoard
+        <div className={"moodBoardSubContainer centerContent"}>
+          <MoodContainer content={content} mood={feelingNo}></MoodContainer>
+        </div>
+      </div>
+    </>
+  );
+};
+export default MoodBoard;
