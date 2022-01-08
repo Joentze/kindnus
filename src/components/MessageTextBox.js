@@ -13,7 +13,7 @@ const InputForm = () => {
   const filter = new Filter();
   const [errorMessage, setErrorMessage] = useState(false);
   const [hasError, setHasError] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [emo, setEmo] = useState(null);
   const [emoSelected, setEmoSelected] = useState(false);
   const [messageStatus, setMessageStatus] = useState(false);
@@ -28,18 +28,22 @@ const InputForm = () => {
       setErrorMessage(message);
     };
 
+    /** Validating Input **/
     // Profanity
     if (filter.isProfane(userMessage))
       return handleError("Please write a nice message :)");
 
     // Too little words
-    if (userMessage.length < 40)
+    if (userMessage.length < 30)
       return handleError("Please write a little bit more :)");
 
     // Emoji not selected
     if (!emoSelected) return handleError("Please select one of the emojis :)");
+    /** ------------- **/
+    setHasError(false);
 
     if (!messageStatus) {
+      setIsLoading(true);
       let writeObj = {
         message: userMessage,
         emotion: emotionsNumMap[emo],
@@ -51,7 +55,6 @@ const InputForm = () => {
           //sets message status to prevent spam
           () => {
             setMessageStatus(true);
-            setHasError(false);
             navigate("/feelings");
           }
         )
@@ -140,6 +143,11 @@ const InputForm = () => {
               <div className={"centerContent"} style={{ background: "rgba(220,220,220,0.5)", padding: "2px", borderRadius:"10px" }}>
                 <p style={{ textAlign: "center", fontSize: "14px", color:"#b91c1c;" }}>{errorMessage}</p>
               </div>
+            ) : (
+              ""
+            )}{" "}
+            {isLoading ? (
+              <p className="loadingMessage centerContent">Sending message...</p>
             ) : (
               ""
             )}
