@@ -36,7 +36,7 @@ const NavMenu = () => {
             alignItems: "center",
           }}
         >
-          KindNUS
+          ✨KindNUS
           <KeyboardArrowDownIcon />
         </b>
       </Button>

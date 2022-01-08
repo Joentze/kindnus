@@ -139,8 +139,10 @@ const InputForm = () => {
                 })}
               </div>
             )}
-            {hasError ? (
-              <p className="errorMessage centerContent">{errorMessage}</p>
+            {hasError ? ( 
+              <div className={"centerContent"} style={{ background: "rgba(220,220,220,0.5)", padding: "2px", borderRadius:"10px" }}>
+                <p style={{ textAlign: "center", fontSize: "14px", color:"#b91c1c;" }}>{errorMessage}</p>
+              </div>
             ) : (
               ""
             )}{" "}
