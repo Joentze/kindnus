@@ -24,6 +24,8 @@ const MoodContainer =({content, mood})=>{
             <br></br>
             <Divider/>
             <p>{definition}</p>
+            <br></br>
+            <p>{}</p>
         </div>
     )
 }
